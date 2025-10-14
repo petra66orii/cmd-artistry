@@ -87,3 +87,23 @@ export const submitContactForm = async (formData: ContactFormData): Promise<any>
   return response.json();
 };
 
+// Define the structure of a testimonial
+export interface Testimonial {
+  id: number;
+  quote: string;
+  author_name: string;
+  company_or_title: string;
+}
+
+// Function to fetch approved testimonials
+export const fetchTestimonials = async (): Promise<Testimonial[]> => {
+  const url = `${API_BASE_URL}/home/testimonials/`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch testimonials');
+  }
+
+  return response.json();
+};
+
