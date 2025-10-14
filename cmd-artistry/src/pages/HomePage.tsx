@@ -1,7 +1,7 @@
 import React from "react";
-import HeroSection from "../components/home/HeroSection";
-import ServicesHighlight from "../components/home/ServicesHighlight";
-import Testimonials from "../components/home/Testimonials";
+import HeroSection from "../components/HeroSection";
+import ServicesHighlight from "../components/ServicesHighlight";
+import Testimonials from "../components/Testimonials";
 
 const HomePage: React.FC = () => {
   return (

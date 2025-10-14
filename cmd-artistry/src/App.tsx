@@ -6,6 +6,7 @@ import AboutPage from "./pages/AboutMe";
 import ServicesPage from "./pages/Services";
 import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/Contact";
+import GalleryPage from "./pages/GalleryPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
         </Routes>
         <Footer />
       </div>
