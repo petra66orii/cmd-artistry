@@ -1,18 +1,16 @@
-import React from "react";
-import Navbar from "./components/Navbar.tsx";
-import HeroSection from "./components/home/HeroSection";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-function App() {
-  return (
-    <div>
-      <Navbar />
-      <HeroSection />
-      {/* The rest of your page content will go here */}
-      <main className="p-8">
-        <h1 className="text-3xl font-bold">More content to come...</h1>
-      </main>
-    </div>
-  );
+const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+  throw new Error("Root element with id 'root' not found.");
 }
 
-export default App;
+createRoot(rootElement).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
