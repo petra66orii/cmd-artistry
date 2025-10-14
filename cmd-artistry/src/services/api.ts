@@ -107,3 +107,23 @@ export const fetchTestimonials = async (): Promise<Testimonial[]> => {
   return response.json();
 };
 
+// Function to subscribe an email to the newsletter
+export const subscribeToNewsletter = async (email: string): Promise<any> => {
+  const url = `${API_BASE_URL}/home/newsletter/subscribe/`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || 'Failed to subscribe');
+  }
+
+  return response.json();
+};
+
