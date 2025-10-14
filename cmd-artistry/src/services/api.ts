@@ -26,3 +26,36 @@ export const fetchGalleryItems = async (category: string = 'all'): Promise<Galle
   return response.json();
 };
 
+export interface Service {
+  id: number;
+  title: string;
+  slug: string;
+  summary: string; 
+  detailed_description: string;
+  image: string | null;
+}
+
+// Function to fetch all services
+export const fetchServices = async (): Promise<Service[]> => {
+  const url = `${API_BASE_URL}/services/`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch services');
+  }
+
+  return response.json();
+};
+
+// Function to fetch a single service by its slug
+export const fetchServiceBySlug = async (slug: string): Promise<Service> => {
+  const url = `${API_BASE_URL}/services/${slug}/`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch service: ${slug}`);
+  }
+
+  return response.json();
+};
+

@@ -1,28 +1,28 @@
-import React from "react";
-
-// Mock data for the services. We will fetch this from the API later.
-const services = [
-  {
-    title: "Mural Painting",
-    description:
-      "Transform your home or business with a unique, hand-painted mural, bringing your vision to life.",
-    link: "/services/mural-painting",
-  },
-  {
-    title: "Sign Writing",
-    description:
-      "Elevate your brand with custom, hand-painted signs that capture your unique character and style.",
-    link: "/services/sign-writing",
-  },
-  {
-    title: "Pottery Classes",
-    description:
-      "Unleash your creativity with hands-on pottery classes for groups or one-on-one sessions.",
-    link: "/services/pottery-classes",
-  },
-];
+import React, { useState, useEffect } from "react";
+import { fetchServices, Service } from "../services/api";
 
 const ServicesHighlight: React.FC = () => {
+  const [services, setServices] = useState<Service[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getServices = async () => {
+      try {
+        // Fetch only the first 3 services for the highlight section
+        const allServices = await fetchServices();
+        setServices(allServices.slice(0, 3));
+      } catch (err) {
+        setError("Could not load services.");
+        console.error(err);
+      }
+    };
+    getServices();
+  }, []);
+
+  if (error) {
+    return null;
+  }
+
   return (
     <section className="bg-off-white py-16 px-4">
       <div className="container mx-auto text-center">
@@ -33,15 +33,17 @@ const ServicesHighlight: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service) => (
             <div
-              key={service.title}
+              key={service.id}
               className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
             >
               <h3 className="text-2xl font-bold text-dark-charcoal mb-4">
                 {service.title}
               </h3>
-              <p className="text-gray-700 mb-6">{service.description}</p>
+              {/* Using the 'summary' field from your API */}
+              <p className="text-gray-700 mb-6">{service.summary}</p>
               <a
-                href={service.link}
+                // Using the 'slug' for the dynamic link
+                href={`/services/${service.slug}`}
                 className="text-pastel-pink font-bold hover:underline"
               >
                 Learn More &rarr;
