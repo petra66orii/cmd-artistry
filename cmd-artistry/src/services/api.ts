@@ -59,3 +59,31 @@ export const fetchServiceBySlug = async (slug: string): Promise<Service> => {
   return response.json();
 };
 
+// Define the structure of the data we'll send
+export interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+// Function to submit the contact form
+export const submitContactForm = async (formData: ContactFormData): Promise<any> => {
+  const url = `${API_BASE_URL}/contact/`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (!response.ok) {
+    // If the server returns an error, try to parse it as JSON
+    const errorData = await response.json();
+    throw new Error(errorData.error || 'Failed to send message');
+  }
+
+  return response.json();
+};
+
