@@ -9,9 +9,15 @@ export interface GalleryItem {
   category: 'MURAL' | 'POTTERY';
 }
 
-// Function to fetch all gallery items from the backend
-export const fetchGalleryItems = async (): Promise<GalleryItem[]> => {
-  const response = await fetch(`${API_BASE_URL}/gallery/`);
+// Function to fetch gallery items. Can now filter by category.
+export const fetchGalleryItems = async (category: string = 'all'): Promise<GalleryItem[]> => {
+  let url = `${API_BASE_URL}/gallery/`;
+  if (category !== 'all') {
+    // This matches the backend user story to filter via query parameter
+    url += `?category=${category}`;
+  }
+  
+  const response = await fetch(url);
   
   if (!response.ok) {
     throw new Error('Failed to fetch gallery items');
@@ -19,3 +25,4 @@ export const fetchGalleryItems = async (): Promise<GalleryItem[]> => {
   
   return response.json();
 };
+
