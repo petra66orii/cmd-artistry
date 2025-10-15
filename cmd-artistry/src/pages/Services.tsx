@@ -51,7 +51,7 @@ const ServicesPage: React.FC = () => {
           {services.map((service) => (
             <div
               key={service.id}
-              className="bg-off-white border border-gray-200/70 p-8 rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
+              className="bg-pastel-lime/40 border border-gray-200/70 p-8 rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
             >
               <h3 className="text-2xl font-bold text-dark-charcoal mb-4">
                 {service.title}
@@ -59,7 +59,7 @@ const ServicesPage: React.FC = () => {
               <p className="text-gray-700 mb-6 flex-grow">{service.summary}</p>
               <a
                 href={`/services/${service.slug}`}
-                className="mt-auto inline-flex items-center gap-2 text-pastel-pink font-bold transition-colors duration-300 hover:text-pastel-beige"
+                className="mt-auto inline-flex items-center gap-2 text-dark-charcoal font-bold transition-colors duration-300 hover:text-pastel-beige"
               >
                 Learn More
                 <span aria-hidden className="text-lg">

@@ -24,7 +24,7 @@ const ServicesHighlight: React.FC = () => {
   }
 
   return (
-    <section className="bg-gradient-to-b from-off-white via-pastel-beige/30 to-off-white py-20 px-4">
+    <section className="bg-watercolor py-20 px-4">
       <div className="container mx-auto text-center">
         <span className="inline-block bg-pastel-pink/30 text-dark-charcoal font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-4 px-4 py-1 rounded-full">
           Signature Services
@@ -37,7 +37,7 @@ const ServicesHighlight: React.FC = () => {
           {services.map((service) => (
             <div
               key={service.id}
-              className="bg-off-white border border-gray-200 p-8 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col text-left"
+              className="bg-pastel-pink/50 border border-gray-200 p-8 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col text-left"
             >
               <h3 className="text-2xl font-bold text-dark-charcoal mb-4">
                 {service.title}
@@ -47,7 +47,7 @@ const ServicesHighlight: React.FC = () => {
               <a
                 // Using the 'slug' for the dynamic link
                 href={`/services/${service.slug}`}
-                className="mt-auto inline-flex items-center gap-2 text-pastel-pink font-bold transition-colors duration-300 hover:text-pastel-beige"
+                className="mt-auto inline-flex items-center gap-2 text-dark-charcoal font-bold transition-colors duration-300 hover:text-pastel-beige"
               >
                 Learn More
                 <span aria-hidden className="text-lg">

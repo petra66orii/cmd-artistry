@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="hidden md:flex space-x-6 font-size-lg">
           <li>
             <a href="/" className="hover:text-pastel-pink">
               Home
