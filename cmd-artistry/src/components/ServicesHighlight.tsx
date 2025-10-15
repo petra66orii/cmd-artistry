@@ -24,8 +24,11 @@ const ServicesHighlight: React.FC = () => {
   }
 
   return (
-    <section className="bg-off-white py-16 px-4">
+    <section className="bg-gradient-to-b from-off-white via-pastel-beige/30 to-off-white py-20 px-4">
       <div className="container mx-auto text-center">
+        <span className="inline-block bg-pastel-pink/30 text-dark-charcoal font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-4 px-4 py-1 rounded-full">
+          Signature Services
+        </span>
         <h2 className="text-3xl md:text-4xl font-bold text-dark-charcoal mb-2">
           Our Services
         </h2>
@@ -34,7 +37,7 @@ const ServicesHighlight: React.FC = () => {
           {services.map((service) => (
             <div
               key={service.id}
-              className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="bg-off-white border border-gray-200 p-8 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col text-left"
             >
               <h3 className="text-2xl font-bold text-dark-charcoal mb-4">
                 {service.title}
@@ -44,9 +47,12 @@ const ServicesHighlight: React.FC = () => {
               <a
                 // Using the 'slug' for the dynamic link
                 href={`/services/${service.slug}`}
-                className="text-pastel-pink font-bold hover:underline"
+                className="mt-auto inline-flex items-center gap-2 text-pastel-pink font-bold transition-colors duration-300 hover:text-pastel-beige"
               >
-                Learn More &rarr;
+                Learn More
+                <span aria-hidden className="text-lg">
+                  &rarr;
+                </span>
               </a>
             </div>
           ))}

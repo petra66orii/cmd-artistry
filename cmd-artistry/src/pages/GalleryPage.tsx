@@ -30,7 +30,7 @@ const GalleryPage: React.FC = () => {
   }) => (
     <button
       onClick={() => setFilter(category)}
-      className={`px-6 py-2 rounded-full font-bold transition-colors ${
+      className={`px-6 py-2 rounded-full font-bold transition-colors duration-300 ${
         filter === category
           ? "bg-dark-charcoal text-white"
           : "bg-white text-dark-charcoal hover:bg-pastel-beige"
@@ -41,8 +41,11 @@ const GalleryPage: React.FC = () => {
   );
 
   return (
-    <div className="bg-off-white min-h-screen">
+    <div className="bg-gradient-to-b from-off-white via-pastel-pink/25 to-off-white min-h-screen">
       <div className="container mx-auto p-8">
+        <span className="block text-center bg-pastel-pink/40 text-dark-charcoal font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-4 px-4 py-1 rounded-full w-max mx-auto">
+          Curated Gallery
+        </span>
         <h1 className="text-4xl font-bold text-center mb-4 text-dark-charcoal">
           Gallery
         </h1>
@@ -74,7 +77,7 @@ const GalleryPage: React.FC = () => {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden group"
+                className="bg-off-white/80 backdrop-blur-sm border border-pastel-pink/40 rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
               >
                 <div className="overflow-hidden h-72">
                   <img

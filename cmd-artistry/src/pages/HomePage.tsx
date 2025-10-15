@@ -5,11 +5,13 @@ import Testimonials from "../components/Testimonials";
 
 const HomePage: React.FC = () => {
   return (
-    <>
+    <main className="bg-off-white">
       <HeroSection />
-      <ServicesHighlight />
-      <Testimonials />
-    </>
+      <div className="space-y-20">
+        <ServicesHighlight />
+        <Testimonials />
+      </div>
+    </main>
   );
 };
 

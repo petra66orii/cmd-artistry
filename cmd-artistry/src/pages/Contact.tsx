@@ -44,10 +44,13 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-off-white min-h-screen py-12">
+    <div className="bg-gradient-to-b from-off-white via-pastel-pink/25 to-pastel-beige/20 min-h-screen py-16">
       <div className="container mx-auto max-w-2xl p-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-dark-charcoal">
+          <span className="inline-block bg-pastel-pink/40 text-dark-charcoal font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-4 px-4 py-1 rounded-full">
+            Let's Collaborate
+          </span>
+          <h1 className="text-4xl md:text-5xl font-cursive text-dark-charcoal">
             Get in Touch
           </h1>
           <p className="text-lg text-gray-600 mt-4">
@@ -56,7 +59,7 @@ const ContactPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-lg shadow-lg">
+        <div className="bg-off-white/90 backdrop-blur-sm border border-pastel-pink/40 p-8 rounded-2xl shadow-lg">
           {status === "success" ? (
             <div className="text-center p-4 bg-lime-100 text-lime-800 rounded-md">
               <p className="font-bold">Message Sent!</p>
@@ -67,7 +70,7 @@ const ContactPage: React.FC = () => {
               <div className="mb-6">
                 <label
                   htmlFor="name"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block text-dark-charcoal font-semibold mb-2"
                 >
                   Your Name
                 </label>
@@ -85,7 +88,7 @@ const ContactPage: React.FC = () => {
               <div className="mb-6">
                 <label
                   htmlFor="email"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block text-dark-charcoal font-semibold mb-2"
                 >
                   Your Email
                 </label>
@@ -103,7 +106,7 @@ const ContactPage: React.FC = () => {
               <div className="mb-6">
                 <label
                   htmlFor="message"
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block text-dark-charcoal font-semibold mb-2"
                 >
                   Message
                 </label>

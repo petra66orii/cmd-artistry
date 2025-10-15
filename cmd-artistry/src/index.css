@@ -1,1 +1,9 @@
+@config "../tailwind.config.ts";
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lato:wght@400;600;700&display=swap");
 @import "tailwindcss";
+
+body {
+	background-color: #fefefe;
+	color: #071b20;
+	font-family: "Lato", sans-serif;
+}

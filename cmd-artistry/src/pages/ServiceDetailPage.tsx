@@ -41,7 +41,7 @@ const ServiceDetailPage: React.FC = () => {
   }
 
   return (
-    <div className="bg-off-white min-h-screen">
+    <div className="bg-gradient-to-b from-off-white via-pastel-beige/20 to-pastel-pink/20 min-h-screen">
       <div className="container mx-auto max-w-4xl p-8">
         {/* Optional: Display the service image as a header */}
         {service.image && (
@@ -54,19 +54,22 @@ const ServiceDetailPage: React.FC = () => {
           </div>
         )}
 
-        <h1 className="text-4xl md:text-5xl font-bold text-dark-charcoal mb-4">
+        <span className="inline-block bg-pastel-pink/40 text-dark-charcoal font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-4 px-4 py-1 rounded-full">
+          Bespoke Service
+        </span>
+        <h1 className="text-4xl md:text-5xl font-cursive text-dark-charcoal mb-6">
           {service.title}
         </h1>
 
         {/* Render the detailed description */}
         <div
-          className="prose lg:prose-xl text-gray-700"
+          className="prose lg:prose-xl text-gray-700 bg-off-white/90 backdrop-blur-sm border border-pastel-pink/40 rounded-2xl p-8 shadow-md"
           dangerouslySetInnerHTML={{ __html: service.detailed_description }}
         >
           {/* This will render HTML if you decide to use a rich text editor in Django admin later */}
         </div>
 
-        <div className="mt-12 border-t pt-8 text-center">
+        <div className="mt-12 border-t border-pastel-pink/40 pt-8 text-center">
           <h3 className="text-2xl font-bold text-dark-charcoal">
             Interested in this Service?
           </h3>

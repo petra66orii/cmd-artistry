@@ -25,7 +25,7 @@ const NewsletterSignup: React.FC = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center md:text-left">
       <h3 className="text-xl font-bold mb-2">Join My Newsletter</h3>
       <p className="text-pastel-beige mb-4">
         Get updates on new artwork, classes, and special events.
@@ -38,20 +38,20 @@ const NewsletterSignup: React.FC = () => {
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row justify-center gap-2"
+          className="flex flex-col sm:flex-row justify-center md:justify-start gap-2"
         >
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email address"
-            className="px-4 py-2 rounded-md text-dark-charcoal focus:outline-none focus:ring-2 focus:ring-pastel-pink flex-grow"
+            className="px-4 py-2 rounded-md text-off-white focus:outline-none focus:ring-2 focus:ring-pastel-pink flex-grow"
             required
           />
           <button
             type="submit"
             disabled={status === "loading"}
-            className="bg-pastel-pink text-dark-charcoal font-bold py-2 px-6 rounded-md hover:bg-pastel-beige transition-colors duration-300 disabled:bg-gray-400"
+            className="bg-pastel-pink text-dark-charcoal font-bold py-3 px-8 rounded-md hover:bg-pastel-beige transition-colors duration-300 disabled:bg-gray-400"
           >
             {status === "loading" ? "Subscribing..." : "Subscribe"}
           </button>

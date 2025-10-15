@@ -5,10 +5,10 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-dark-charcoal text-off-white p-4 sticky top-0 z-50">
+    <nav className="bg-dark-charcoal/95 backdrop-blur text-off-white p-4 border-b border-pastel-pink/40 sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="text-2xl font-bold">
+        <div className="text-2xl font-cursive">
           <a href="/">CMD Artistry</a>
         </div>
 
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
         {/* Desktop Contact Button */}
         <a
           href="/contact"
-          className="hidden md:block bg-pastel-pink text-dark-charcoal font-bold py-2 px-4 rounded hover:bg-pastel-beige"
+          className="hidden md:block bg-pastel-pink text-dark-charcoal font-bold py-2 px-4 rounded-full hover:bg-pastel-beige transition-colors duration-300 shadow-sm"
         >
           Contact
         </a>
@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
           <li>
             <a
               href="/contact"
-              className="bg-pastel-pink text-dark-charcoal font-bold py-2 px-4 rounded hover:bg-pastel-beige w-full text-center"
+              className="bg-pastel-pink text-dark-charcoal font-bold py-2 px-4 rounded-full hover:bg-pastel-beige w-full text-center transition-colors duration-300"
             >
               Contact
             </a>
