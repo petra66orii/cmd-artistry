@@ -1,9 +1,14 @@
 import { defineConfig } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default defineConfig({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Lato', ...defaultTheme.fontFamily.sans],
+        cursive: ['"Dancing Script"', 'cursive'],
+      },
       colors: {
         "pastel-pink": "#FBDADE",
         "pastel-beige": "#F5D29D",
