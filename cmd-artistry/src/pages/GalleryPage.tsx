@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { fetchGalleryItems, GalleryItem } from "../services/api";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Lightbox from "../components/Lightbox";
 
 const GalleryPage: React.FC = () => {
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("all"); // State for the filter
+
+  const [selectedImage, setSelectedImage] = useState<{
+    url: string;
+    title: string;
+  } | null>(null);
 
   useEffect(() => {
     const getItems = async () => {
@@ -77,7 +83,10 @@ const GalleryPage: React.FC = () => {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-off-white/80 backdrop-blur-sm border border-pastel-pink/40 rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
+                className="bg-white rounded-lg shadow-lg overflow-hidden group cursor-pointer" // <-- Add cursor-pointer
+                onClick={() =>
+                  setSelectedImage({ url: item.image, title: item.title })
+                } // <-- 3. Set the selected image on click
               >
                 <div className="overflow-hidden h-72">
                   <img
@@ -97,6 +106,13 @@ const GalleryPage: React.FC = () => {
           </div>
         )}
       </div>
+      {selectedImage && (
+        <Lightbox
+          imageUrl={selectedImage.url}
+          altText={selectedImage.title}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
     </div>
   );
 };
