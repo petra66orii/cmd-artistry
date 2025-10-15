@@ -63,7 +63,7 @@ const ServiceDetailPage: React.FC = () => {
 
         {/* Render the detailed description */}
         <div
-          className="prose lg:prose-xl text-gray-700 bg-off-white/90 backdrop-blur-sm border border-pastel-pink/40 rounded-2xl p-8 shadow-md"
+          className="prose lg:prose-xl text-gray-700"
           dangerouslySetInnerHTML={{ __html: service.detailed_description }}
         >
           {/* This will render HTML if you decide to use a rich text editor in Django admin later */}
