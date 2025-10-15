@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Breadcrumbs from "./components/Breadcrumbs";
 import AboutPage from "./pages/AboutMe";
 import ServicesPage from "./pages/Services";
 import HomePage from "./pages/HomePage";
@@ -15,6 +16,7 @@ function App() {
     <Router>
       <div>
         <Navbar />
+        <Breadcrumbs />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
