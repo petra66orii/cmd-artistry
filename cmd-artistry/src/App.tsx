@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/Contact";
 import GalleryPage from "./pages/GalleryPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
+import BackToTopButton from "./components/BackToTopButton";
+import NotFoundPage from "./pages/NotFoundPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -28,8 +30,10 @@ function App() {
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
+        <BackToTopButton />
       </div>
     </Router>
   );
