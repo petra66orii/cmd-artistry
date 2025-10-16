@@ -1,88 +1,97 @@
+// src/components/Footer.tsx
 import React from "react";
 import NewsletterSignup from "./NewsletterSignup";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-dark-charcoal to-[#040e11] text-off-white py-16 px-4 border-t border-pastel-pink/30">
-      <div className="container mx-auto grid grid-cols-1 gap-12 md:grid-cols-3">
-        <div className="space-y-4">
-          <h3 className="text-2xl font-bold">CMD Artistry</h3>
-          <p className="text-pastel-beige">
-            Transforming spaces with handcrafted murals and ceramics tailored to
-            your story.
-          </p>
-          <div className="flex space-x-6">
-            <a
-              href="#"
-              className="hover:text-pastel-pink transition-colors duration-300"
-            >
-              Instagram
-            </a>
-            <a
-              href="#"
-              className="hover:text-pastel-pink transition-colors duration-300"
-            >
-              Facebook
-            </a>
+    <footer className="bg-dark-charcoal text-off-white pt-16 pb-8 px-4">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* Column 1: About & Social */}
+          <div>
+            <h3 className="text-2xl font-bold font-cursive">CMD Artistry</h3>
+            <p className="text-gray-400 my-4">
+              Handcrafted murals and pottery, designed for your vision.
+            </p>
+            <div className="flex space-x-4">
+              {/* Replace # with actual links */}
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="hover:text-pastel-pink transition-colors"
+              >
+                {/* Instagram Icon SVG */}
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  {" "}
+                  ...{" "}
+                </svg>
+              </a>
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="hover:text-pastel-pink transition-colors"
+              >
+                {/* Facebook Icon SVG */}
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  {" "}
+                  ...{" "}
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Column 2: Quick Links & Contact */}
+          <div>
+            <h4 className="text-lg font-bold mb-4">Explore</h4>
+            <ul>
+              <li className="mb-2">
+                <Link to="/gallery" className="hover:text-pastel-pink">
+                  Gallery
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/services" className="hover:text-pastel-pink">
+                  Services
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/about" className="hover:text-pastel-pink">
+                  About
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/contact" className="hover:text-pastel-pink">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+            <div className="mt-6">
+              <h4 className="text-lg font-bold mb-2">Contact Info</h4>
+              <p className="text-gray-400">carmel.artist@email.com</p>
+              <p className="text-gray-400">+353 12 345 6789</p>
+            </div>
+          </div>
+
+          {/* Column 3: Newsletter */}
+          <div>
+            <h4 className="text-lg font-bold mb-4">Join The Newsletter</h4>
+            <NewsletterSignup />
           </div>
         </div>
-
-        <div>
-          <h4 className="text-xl font-bold mb-4">Quick Links</h4>
-          <ul className="space-y-2">
-            <li>
-              <a
-                href="/"
-                className="hover:text-pastel-pink transition-colors duration-300"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="/gallery"
-                className="hover:text-pastel-pink transition-colors duration-300"
-              >
-                Gallery
-              </a>
-            </li>
-            <li>
-              <a
-                href="/services"
-                className="hover:text-pastel-pink transition-colors duration-300"
-              >
-                Services
-              </a>
-            </li>
-            <li>
-              <a
-                href="/about"
-                className="hover:text-pastel-pink transition-colors duration-300"
-              >
-                About Me
-              </a>
-            </li>
-            <li>
-              <a
-                href="/contact"
-                className="hover:text-pastel-pink transition-colors duration-300"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
+        <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
+          <p>&copy; {currentYear} CMD Artistry. All Rights Reserved.</p>
         </div>
-
-        <div className="md:text-left">
-          <NewsletterSignup />
-        </div>
-      </div>
-      <div className="border-t border-white/10 pt-8 mt-12 text-center text-sm text-gray-400">
-        <p className="text-sm text-gray-400">
-          &copy; {currentYear} CMD Artistry. All Rights Reserved.
-        </p>
       </div>
     </footer>
   );
