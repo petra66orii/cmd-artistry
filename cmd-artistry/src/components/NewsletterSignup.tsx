@@ -25,7 +25,7 @@ const NewsletterSignup: React.FC = () => {
   };
 
   return (
-    <div className="text-center md:text-left">
+    <div className="text-center md:text-left p-6 bg-dark-charcoal bg-opacity-70 rounded-md">
       <h3 className="text-xl font-bold mb-2">Join My Newsletter</h3>
       <p className="text-pastel-beige mb-4">
         Get updates on new artwork, classes, and special events.

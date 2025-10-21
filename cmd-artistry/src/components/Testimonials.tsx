@@ -37,7 +37,7 @@ const Testimonials: React.FC = () => {
 
   if (loading) {
     return (
-      <section className="bg-gradient-to-r from-pastel-pink/40 via-off-white to-pastel-lime/40 py-20 px-4">
+      <section className="bg-gradient-to-r from-pastel-pink/60 via-off-white to-pastel-lime/60 py-20 px-4">
         <div className="container mx-auto flex justify-center">
           <LoadingSpinner />
         </div>

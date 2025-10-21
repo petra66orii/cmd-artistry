@@ -21,3 +21,36 @@ body {
 		background-size: cover;
 	}
 }
+
+a, button {
+  transition: all 0.3s ease-in-out;
+}
+
+@keyframes gentleWave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+
+.wave-slow, .wave-medium, .wave-fast {
+  animation: gentleWave ease-in-out infinite;
+}
+
+.wave-slow {
+  animation-duration: 20s;
+  animation-delay: -3s; /* Stagger the start time */
+}
+
+.wave-medium {
+  animation-duration: 15s;
+  animation-delay: -1s; /* Stagger the start time */
+}
+
+.wave-fast {
+  animation-duration: 10s;
+  animation-delay: -5s; /* Stagger the start time */
+}

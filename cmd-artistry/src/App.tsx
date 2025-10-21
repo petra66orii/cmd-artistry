@@ -12,31 +12,39 @@ import ServiceDetailPage from "./pages/ServiceDetailPage";
 import BackToTopButton from "./components/BackToTopButton";
 import NotFoundPage from "./pages/NotFoundPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-function App() {
+const App: React.FC = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
   return (
     <Router>
-      <div className="relative flex min-h-screen flex-col">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-watercolor"
+      <div className="relative">
+        <motion.div
+          className="fixed inset-0 bg-off-white bg-watercolor z-0"
+          style={{ y }}
         />
-        <Navbar />
-        <Breadcrumbs />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/:slug" element={<ServiceDetailPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        <Footer />
-        <BackToTopButton />
+        <div className="relative z-10 flex flex-col min-h-screen bg-transparent">
+          <Navbar />
+          <Breadcrumbs />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/services/:slug" element={<ServiceDetailPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </main>
+          <Footer />
+          <BackToTopButton />
+        </div>
       </div>
     </Router>
   );
-}
+};
 
 export default App;

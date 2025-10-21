@@ -20,7 +20,7 @@ const credentials = [
 
 const Credentials: React.FC = () => {
   return (
-    <section className="py-20 px-4 bg-off-white">
+    <section className="bg-gradient-to-r from-pastel-pink/60 via-off-white to-pastel-lime/60 py-20 px-4">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold text-dark-charcoal mb-4">
           Experience & Certifications

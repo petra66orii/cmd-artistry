@@ -1,19 +1,20 @@
-// src/components/Footer.tsx
 import React from "react";
 import NewsletterSignup from "./NewsletterSignup";
 import { Link } from "react-router-dom";
+import AnimatedBackground from "./AnimatedBackground";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-dark-charcoal text-off-white pt-16 pb-8 px-4">
-      <div className="container mx-auto">
+    <footer className="relative bg-dark-charcoal text-off-white pt-16 pb-8 px-4 overflow-hidden">
+      <AnimatedBackground className="absolute inset-0 w-full h-full object-cover z-0 opacity-70" />
+      <div className="relative z-10 container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Column 1: About & Social */}
           <div>
             <h3 className="text-2xl font-bold font-cursive">CMD Artistry</h3>
-            <p className="text-gray-400 my-4">
+            <p className="text-gray-100 my-4">
               Handcrafted murals and pottery, designed for your vision.
             </p>
             <div className="flex space-x-4">
@@ -78,8 +79,8 @@ const Footer: React.FC = () => {
             </ul>
             <div className="mt-6">
               <h4 className="text-lg font-bold mb-2">Contact Info</h4>
-              <p className="text-gray-400">carmel.artist@email.com</p>
-              <p className="text-gray-400">+353 12 345 6789</p>
+              <p className="text-gray-100">carmel.artist@email.com</p>
+              <p className="text-gray-100">+353 12 345 6789</p>
             </div>
           </div>
 

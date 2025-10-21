@@ -8,11 +8,9 @@ const HomePage: React.FC = () => {
   return (
     <main className="bg-off-white/90 backdrop-blur-sm">
       <HeroSection />
-      <div className="space-y-20">
-        <ServicesHighlight />
-        <Credentials />
-        <Testimonials />
-      </div>
+      <ServicesHighlight />
+      <Credentials />
+      <Testimonials />
     </main>
   );
 };

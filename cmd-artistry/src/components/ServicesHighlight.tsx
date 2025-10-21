@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchServices, Service } from "../services/api";
+import { motion } from "framer-motion";
 
 const ServicesHighlight: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -24,7 +25,13 @@ const ServicesHighlight: React.FC = () => {
   }
 
   return (
-    <section className="bg-watercolor py-20 px-4">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-gradient-to-r from-pastel-pink/60 via-off-white to-pastel-lime/60 py-20 px-4"
+    >
       <div className="container mx-auto text-center">
         <span className="inline-block bg-pastel-pink/30 text-dark-charcoal font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-4 px-4 py-1 rounded-full">
           Signature Services
@@ -58,7 +65,7 @@ const ServicesHighlight: React.FC = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
