@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchTestimonials, Testimonial } from "../services/api";
 import LoadingSpinner from "./LoadingSpinner";
+import { motion } from "framer-motion";
 
 const Testimonials: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -50,7 +51,13 @@ const Testimonials: React.FC = () => {
   }
 
   return (
-    <section className="bg-gradient-to-r from-pastel-pink/40 via-off-white to-pastel-lime/40 py-20 px-4">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-gradient-to-r from-pastel-pink/40 via-off-white to-pastel-lime/40 py-20 px-4"
+    >
       <div className="container mx-auto text-center">
         <span className="inline-block bg-pastel-lime/40 text-dark-charcoal font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-4 px-4 py-1 rounded-full">
           Client Stories
@@ -125,7 +132,7 @@ const Testimonials: React.FC = () => {
           </button>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -29,17 +29,17 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-4xl md:text-6xl font-cursive font-bold leading-tight mb-4"
+          className="text-4xl md:text-6xl text-dark-charcoal font-cursive font-bold leading-tight mb-4"
         >
-          Transforming Spaces with Handcrafted Art.
+          Transforming Spaces with Handcrafted Art
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="text-lg md:text-xl mb-8"
+          className="text-lg md:text-xl text-dark-charcoal mb-8"
         >
-          Custom murals and unique pottery, designed for your vision.
+          Custom murals and unique pottery, designed for your vision
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 import atuLogo from "../assets/images/logos/atu-sligo-logo.png";
 import nuigLogo from "../assets/images/logos/nuig-logo.png";
@@ -20,7 +21,13 @@ const credentials = [
 
 const Credentials: React.FC = () => {
   return (
-    <section className="bg-gradient-to-r from-pastel-pink/60 via-off-white to-pastel-lime/60 py-20 px-4">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-gradient-to-r from-pastel-pink/60 via-off-white to-pastel-lime/60 py-20 px-4"
+    >
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold text-dark-charcoal mb-4">
           Experience & Certifications
@@ -50,7 +57,7 @@ const Credentials: React.FC = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
