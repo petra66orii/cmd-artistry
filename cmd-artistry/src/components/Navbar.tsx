@@ -1,45 +1,76 @@
 import React, { useState } from "react";
 
+/**
+ * A reusable navigation link component with a center-expanding underline effect
+ * on hover. Tailored for the dark-background navbar.
+ *
+ * @param {object} props
+ * @param {string} props.href - The URL the link should point to.
+ * @param {React.ReactNode} props.children - The text or content of the link.
+ */
+const NavLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <a
+    href={href}
+    className="relative inline-block py-1 px-1 text-lg transition-colors duration-300 hover:text-pastel-pink group"
+  >
+    {children}
+
+    <span
+      className="absolute bottom-0 left-1/2 block h-[2px] w-0 -translate-x-1/2 bg-pastel-pink transition-all duration-300 group-hover:w-full"
+      aria-hidden="true"
+    ></span>
+  </a>
+);
+
 const Navbar: React.FC = () => {
   // State to track if the mobile menu is open or closed
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-dark-charcoal/95 backdrop-blur text-off-white p-4 border-b border-pastel-pink/40 sticky top-0 z-50">
+    <nav className="bg-dark-charcoal/95 backdrop-blur text-off-white p-2 border-b border-pastel-pink/40 sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="text-2xl font-cursive">
-          <a href="/">CMD Artistry</a>
-        </div>
+        <a
+          href="/"
+          aria-label="CMD Artistry Home"
+          className="flex items-center gap-3"
+        >
+          <img
+            src="/cmd-new-logo.png"
+            alt="CMD Artistry Logo"
+            className="h-16 w-auto hover:text-pastel-pink transition-colors duration-300"
+          />
+          <span className="text-lg font-cursive text-off-white hover:text-pastel-pink transition-colors duration-300">
+            CMD Artistry
+          </span>
+        </a>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex space-x-6 font-size-lg">
+        <ul className="hidden md:flex space-x-6 items-center">
           <li>
-            <a href="/" className="hover:text-pastel-pink">
-              Home
-            </a>
+            <NavLink href="/">Home</NavLink>
           </li>
           <li>
-            <a href="/gallery" className="hover:text-pastel-pink">
-              Gallery
-            </a>
+            <NavLink href="/gallery">Gallery</NavLink>
           </li>
           <li>
-            <a href="/services" className="hover:text-pastel-pink">
-              Services
-            </a>
+            <NavLink href="/services">Services</NavLink>
           </li>
           <li>
-            <a href="/about" className="hover:text-pastel-pink">
-              About
-            </a>
+            <NavLink href="/about">About</NavLink>
           </li>
         </ul>
 
         {/* Desktop Contact Button */}
         <a
           href="/contact"
-          className="hidden md:block bg-pastel-pink text-dark-charcoal font-bold py-2 px-4 rounded-full hover:bg-pastel-beige transition-colors duration-300 shadow-sm"
+          className="hidden md:block bg-pastel-pink text-dark-charcoal font-bold text-lg py-2 px-4 rounded-full hover:bg-pastel-beige transition-colors duration-300 shadow-sm"
         >
           Contact
         </a>
