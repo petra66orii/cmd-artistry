@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { fetchServiceBySlug, Service } from "../services/api";
 import AnimatedBackground from "../components/AnimatedBackground";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -51,8 +52,16 @@ const ServiceDetailPage: React.FC = () => {
     return <div className="text-center p-8">Service not found.</div>;
   }
 
+  const metaDescription =
+    service.summary ||
+    "Details for bespoke mural, pottery, and sign writing services by CM Artistry.";
+
   return (
     <div className="bg-off-white min-h-screen">
+      <Helmet>
+        <title>{`${service.title} | CM Artistry`}</title>
+        <meta name="description" content={metaDescription} />
+      </Helmet>
       {/* --- 1. Wavy Hero Section --- */}
       <div className="relative overflow-hidden shadow-lg">
         <AnimatedBackground className="absolute inset-0 w-full h-full object-cover z-0 opacity-70" />

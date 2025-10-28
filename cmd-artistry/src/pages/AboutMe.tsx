@@ -1,10 +1,18 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import AnimatedBackground from "../components/AnimatedBackground";
 import profileImageUrl from "../assets/images/about-me-portrait.jpg";
 
 const AboutPage: React.FC = () => {
   return (
     <div className="bg-off-white min-h-screen">
+      <Helmet>
+        <title>About Carmel | CM Artistry | Artist & Maker</title>
+        <meta
+          name="description"
+          content="Meet Carmel, the artist and maker behind CM Artistry. Discover the story, education, and passion behind her custom murals and handcrafted pottery."
+        />
+      </Helmet>
       {/* --- 1. Wavy Hero Section --- */}
       <div className="relative overflow-hidden shadow-lg">
         <AnimatedBackground className="absolute inset-0 w-full h-full object-cover z-0 opacity-70" />

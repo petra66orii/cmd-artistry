@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchServices, Service } from "../services/api.ts";
+import { Helmet } from "react-helmet";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import LoadingSpinner from "../components/LoadingSpinner.tsx";
 
@@ -101,6 +102,15 @@ const ServicesPage: React.FC = () => {
 
   return (
     <div className="relative bg-gradient-to-br from-off-white via-pastel-pink/10 to-pastel-lime/10 min-h-screen flex flex-col items-center justify-center overflow-hidden py-16 px-4">
+      <Helmet>
+        <title>
+          Our Services | CM Artistry | Murals, Pottery, Sign Writing
+        </title>
+        <meta
+          name="description"
+          content="Discover the services offered by CM Artistry, including bespoke murals, custom pottery, and professional sign writing."
+        />
+      </Helmet>
       {/* --- Page Header --- */}
       <div className="text-center mb-8 md:mb-12 relative z-10">
         <span className="block bg-pastel-lime/40 text-dark-charcoal font-semibold uppercase tracking-[0.35em] text-xs md:text-sm mb-4 px-4 py-1 rounded-full w-max mx-auto">

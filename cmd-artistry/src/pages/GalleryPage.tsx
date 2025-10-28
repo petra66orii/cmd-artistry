@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { fetchGalleryItems, GalleryItem } from "../services/api";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -112,6 +113,13 @@ const ScrollingGalleryRow: React.FC<ScrollingGalleryRowProps> = ({
 
   return (
     <div className="flex overflow-hidden my-4 group-hover">
+      <Helmet>
+        <title>Gallery | CM Artistry | Murals & Pottery</title>
+        <meta
+          name="description"
+          content="Explore the gallery of handcrafted murals and unique pottery by CM Artistry. See examples of bespoke artwork and ceramics."
+        />
+      </Helmet>
       <div className={animationClass}>
         {items.map((item) => (
           <div
