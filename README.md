@@ -1,1 +1,1 @@
-# cmd-artistry
+# cm-artistry

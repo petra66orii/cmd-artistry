@@ -15,16 +15,16 @@ const Footer: React.FC = () => {
           <div>
             <a
               href="/"
-              aria-label="CMD Artistry Home"
+              aria-label="CM Artistry Home"
               className="flex items-center gap-3 mb-4"
             >
               <img
                 src="/cmd-new-logo.png"
-                alt="CMD Artistry Bird Logo"
+                alt="CM Artistry Bird Logo"
                 className="h-16 w-auto"
               />
               <span className="text-lg font-cursive text-off-white hover:text-pastel-pink transition-colors duration-300">
-                CMD Artistry
+                CM Artistry
               </span>
             </a>
             <p className="text-gray-100 my-4">
@@ -103,8 +103,8 @@ const Footer: React.FC = () => {
             <NewsletterSignup />
           </div>
         </div>
-        <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-          <p>&copy; {currentYear} CMD Artistry. All Rights Reserved.</p>
+        <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-300">
+          <p>&copy; {currentYear} CM Artistry. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

@@ -33,21 +33,21 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-dark-charcoal/95 backdrop-blur text-off-white p-2 border-b border-pastel-pink/40 sticky top-0 z-50">
+    <nav className="bg-dark-charcoal/95 backdrop-blur text-off-white py-2 px-4 border-b border-pastel-pink/40 sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <a
           href="/"
-          aria-label="CMD Artistry Home"
+          aria-label="CM Artistry Home"
           className="flex items-center gap-3"
         >
           <img
             src="/cmd-new-logo.png"
-            alt="CMD Artistry Logo"
+            alt="CM Artistry Logo"
             className="h-16 w-auto hover:text-pastel-pink transition-colors duration-300"
           />
           <span className="text-lg font-cursive text-off-white hover:text-pastel-pink transition-colors duration-300">
-            CMD Artistry
+            CM Artistry
           </span>
         </a>
 

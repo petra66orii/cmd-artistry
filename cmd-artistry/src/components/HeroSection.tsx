@@ -23,7 +23,7 @@ const HeroSection: React.FC = () => {
 
       <div className="relative z-10 p-6 md:p-10 max-w-3xl">
         <span className="inline-block bg-off-white/80 text-dark-charcoal font-semibold tracking-[0.35em] uppercase text-xs md:text-sm mb-4 px-4 py-1 rounded-full">
-          CMD Artistry Studio
+          CM Artistry Studio
         </span>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
