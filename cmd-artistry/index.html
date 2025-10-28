@@ -2,7 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- 
+      FAVICON LINKS WITH LIGHT/DARK MODE SUPPORT:
+      The browser will automatically choose the correct icon based
+      on the user's system theme (light or dark).
+    -->
+
+    <!-- Default icon (for older browsers) & Light Mode icon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon-light.png"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <!-- Dark Mode icon (your white logo) -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon-dark.png"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <link rel="apple-touch-icon" href="/favicon-dark.png" />
+    <!-- End Favicon Links -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -10,7 +35,7 @@
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cm-artistry</title>
+    <title>CM Artistry</title>
   </head>
   <body>
     <div id="root"></div>
