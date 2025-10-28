@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
             </ul>
             <div className="mt-6">
               <h4 className="text-lg font-bold mb-2">Contact Info</h4>
-              <p className="text-gray-100">carmel.artist@email.com</p>
+              <p className="text-gray-100">carmeldeelyceramics@gmail.com</p>
               <p className="text-gray-100">+353 12 345 6789</p>
             </div>
           </div>
