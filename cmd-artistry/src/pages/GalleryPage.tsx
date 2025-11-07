@@ -16,13 +16,13 @@ const marqueeStyles = `
 .animate-marquee {
   display: flex;
   flex-shrink: 0;
-  animation: marquee 40s linear infinite;
+  animation: marquee 100s linear infinite;
   will-change: transform; /* Performance hint */
 }
 .animate-marquee-reverse {
   display: flex;
   flex-shrink: 0;
-  animation: marquee-reverse 40s linear infinite;
+  animation: marquee-reverse 100s linear infinite;
   will-change: transform; /* Performance hint */
 }
 /* Pause animation on hover */
