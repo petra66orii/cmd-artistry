@@ -91,7 +91,7 @@ const Testimonials: React.FC = () => {
           <button
             onClick={handlePrev}
             aria-label="Previous testimonial"
-            className="absolute top-1/2 -left-4 md:-left-12 transform -translate-y-1/2 p-3 rounded-full bg-off-white text-dark-charcoal hover:bg-pastel-lime/40 transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-pastel-pink"
+            className="absolute top-1/2 -left-4 md:-left-12 transform -translate-y-1/2 p-2 rounded-full bg-off-white text-dark-charcoal hover:bg-pastel-lime/40 transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-pastel-pink"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +113,7 @@ const Testimonials: React.FC = () => {
           <button
             onClick={handleNext}
             aria-label="Next testimonial"
-            className="absolute top-1/2 -right-4 md:-right-12 transform -translate-y-1/2 p-3 rounded-full bg-off-white text-dark-charcoal hover:bg-pastel-lime/40 transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-pastel-pink"
+            className="absolute top-1/2 -right-4 md:-right-12 transform -translate-y-1/2 p-2 rounded-full bg-off-white text-dark-charcoal hover:bg-pastel-lime/40 transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-pastel-pink"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
