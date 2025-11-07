@@ -171,16 +171,16 @@ const ServicesPage: React.FC = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="w-full h-1/2 md:h-full relative order-1 md:order-2 md:pl-12 flex items-center justify-center p-4"
+                className="w-full h-1/2 md:h-full relative order-1 md:order-2 md:pl-12 flex items-center justify-center"
               >
                 {currentService.image ? (
                   <img
                     src={currentService.image}
                     alt={currentService.title}
-                    className="w-full h-full object-contain rounded-2xl"
+                    className="w-full h-auto max-h-full object-contain rounded-2xl shadow-lg"
                   />
                 ) : (
-                  <div className="w-full h-full bg-pastel-beige rounded-2xl flex items-center justify-center text-dark-charcoal/50 shadow-xl p-4">
+                  <div className="w-full h-full bg-pastel-beige rounded-2xl flex items-center justify-center text-dark-charcoal/50 p-4">
                     No Image Available
                   </div>
                 )}
