@@ -1,13 +1,107 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AnimatedBackground from "../components/AnimatedBackground";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Helmet } from "react-helmet";
 
+function getCookie(name: string) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 const ContactPage: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [service, setService] = useState("Select a service...");
+  const [message, setMessage] = useState("");
+
+  type SubmitStatus = "idle" | "submitting" | "success" | "error";
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  useEffect(() => {
+    const getCsrfToken = async () => {
+      try {
+        // This fetch call's only purpose is to hit the backend
+        // and get the 'csrftoken' cookie set in the browser.
+        await fetch("http://localhost:8000/api/get-csrf-token/", {
+          // 'credentials: "include"' is ESSENTIAL for cross-origin cookies
+          credentials: "include",
+        });
+      } catch (err) {
+        console.error("Could not fetch CSRF token", err);
+        // You could set an error state here if needed
+      }
+    };
+    getCsrfToken();
+  }, []);
+
+  // Updated submit handler
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Logic to send form data will go here (e.g., EmailJS, Netlify forms)
-    console.log("Form submitted!");
+    setSubmitStatus("submitting");
+    setSubmitMessage("");
+
+    // --- Get the CSRF token ---
+    const csrftoken = getCookie("csrftoken");
+
+    if (!csrftoken) {
+      setSubmitStatus("error");
+      setSubmitMessage(
+        "Could not verify security token. Please refresh the page and try again."
+      );
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8000/api/contact/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // --- Add the CSRF token to the request headers ---
+          "X-CSRFToken": csrftoken,
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          service,
+          message,
+        }),
+      });
+
+      if (!response.ok) {
+        // Handle server errors (e.g., 500)
+        throw new Error("A server error occurred. Please try again later.");
+      }
+
+      // --- Handle Success ---
+      setSubmitStatus("success");
+      setSubmitMessage("Thank you! Your message has been sent.");
+      // Clear the form
+      setName("");
+      setEmail("");
+      setSubject("");
+      setService("Select a service...");
+      setMessage("");
+    } catch (err: any) {
+      // --- Handle Fetch/Network Errors ---
+      setSubmitStatus("error");
+      setSubmitMessage(
+        err.message || "An unknown error occurred. Please try again."
+      );
+    }
   };
 
   return (
@@ -90,6 +184,8 @@ const ContactPage: React.FC = () => {
                       id="name"
                       name="name"
                       required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full px-4 py-3 bg-off-white/70 border border-pastel-pink/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-pastel-pink transition-all"
                     />
                   </div>
@@ -105,6 +201,8 @@ const ContactPage: React.FC = () => {
                       id="email"
                       name="email"
                       required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full px-4 py-3 bg-off-white/70 border border-pastel-pink/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-pastel-pink transition-all"
                     />
                   </div>
@@ -121,8 +219,31 @@ const ContactPage: React.FC = () => {
                     id="subject"
                     name="subject"
                     required
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
                     className="w-full px-4 py-3 bg-off-white/70 border border-pastel-pink/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-pastel-pink transition-all"
                   />
+                </div>
+                <div>
+                  <label
+                    htmlFor="service"
+                    className="block text-sm font-bold text-gray-700 mb-2"
+                  >
+                    Service of Interest
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-pastel-pink focus:border-transparent"
+                  >
+                    <option>Select a service...</option>
+                    <option value="mural">Mural</option>
+                    <option value="pottery">Pottery</option>
+                    <option value="sign-writing">Sign Writing</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
                 <div>
                   <label
@@ -136,16 +257,33 @@ const ContactPage: React.FC = () => {
                     name="message"
                     rows={6}
                     required
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-4 py-3 bg-off-white/70 border border-pastel-pink/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-pastel-pink transition-all"
                   ></textarea>
                 </div>
                 <div>
                   <button
                     type="submit"
-                    className="bg-pastel-pink text-dark-charcoal font-bold py-3 px-8 rounded text-lg hover:bg-pastel-beige transition-colors duration-300 w-full md:w-auto"
+                    disabled={submitStatus === "submitting"}
+                    className="w-full bg-pastel-pink text-dark-charcoal font-bold py-3 px-8 rounded-lg text-lg hover:bg-pastel-beige transition-colors duration-300 shadow disabled:opacity-50 disabled:cursor-wait"
                   >
-                    Send Message
+                    {submitStatus === "submitting"
+                      ? "Sending..."
+                      : "Send Message"}
                   </button>
+
+                  {/* --- Success/Error Message Box --- */}
+                  {submitStatus === "success" && (
+                    <div className="mt-4 text-center text-green-700 font-semibold p-3 bg-green-100 rounded-lg">
+                      {submitMessage}
+                    </div>
+                  )}
+                  {submitStatus === "error" && (
+                    <div className="mt-4 text-center text-red-700 font-semibold p-3 bg-red-100 rounded-lg">
+                      {submitMessage}
+                    </div>
+                  )}
                 </div>
               </form>
             </div>
