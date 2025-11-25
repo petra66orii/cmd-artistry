@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AnimatedBackground from "../components/AnimatedBackground";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Helmet } from "react-helmet";
-
-function getCookie(name: string) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
+// Import the helper functions and types
+import {
+  getCsrfToken,
+  submitContactForm,
+  ContactFormData,
+} from "../services/api";
 
 const ContactPage: React.FC = () => {
   const [name, setName] = useState("");
@@ -29,74 +20,43 @@ const ContactPage: React.FC = () => {
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
   const [submitMessage, setSubmitMessage] = useState("");
 
-  useEffect(() => {
-    const getCsrfToken = async () => {
-      try {
-        // This fetch call's only purpose is to hit the backend
-        // and get the 'csrftoken' cookie set in the browser.
-        await fetch("http://localhost:8000/api/get-csrf-token/", {
-          // 'credentials: "include"' is ESSENTIAL for cross-origin cookies
-          credentials: "include",
-        });
-      } catch (err) {
-        console.error("Could not fetch CSRF token", err);
-        // You could set an error state here if needed
-      }
-    };
-    getCsrfToken();
-  }, []);
-
-  // Updated submit handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitStatus("submitting");
     setSubmitMessage("");
 
-    // --- Get the CSRF token ---
-    const csrftoken = getCookie("csrftoken");
-
-    if (!csrftoken) {
-      setSubmitStatus("error");
-      setSubmitMessage(
-        "Could not verify security token. Please refresh the page and try again."
-      );
-      return;
-    }
-
     try {
-      const response = await fetch("http://localhost:8000/api/contact/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // --- Add the CSRF token to the request headers ---
-          "X-CSRFToken": csrftoken,
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          name,
-          email,
-          subject,
-          service,
-          message,
-        }),
-      });
+      // 1. Get the token
+      const csrfToken = await getCsrfToken();
 
-      if (!response.ok) {
-        // Handle server errors (e.g., 500)
-        throw new Error("A server error occurred. Please try again later.");
+      if (!csrfToken) {
+        throw new Error("Could not verify security token.");
       }
 
-      // --- Handle Success ---
+      // 2. Prepare data
+      const formData: ContactFormData = {
+        name,
+        email,
+        subject,
+        service,
+        message,
+      };
+
+      // 3. Submit
+      await submitContactForm(formData, csrfToken);
+
+      // 4. Success!
       setSubmitStatus("success");
       setSubmitMessage("Thank you! Your message has been sent.");
-      // Clear the form
+
+      // Clear form
       setName("");
       setEmail("");
       setSubject("");
       setService("Select a service...");
       setMessage("");
     } catch (err: any) {
-      // --- Handle Fetch/Network Errors ---
+      console.error("Submission error:", err);
       setSubmitStatus("error");
       setSubmitMessage(
         err.message || "An unknown error occurred. Please try again."
