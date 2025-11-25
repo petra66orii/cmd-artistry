@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchServices, Service } from "../services/api.ts";
+import { fetchServices, Service } from "../services/api";
 import { Helmet } from "react-helmet";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import LoadingSpinner from "../components/LoadingSpinner.tsx";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ServicesPage: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -16,6 +16,7 @@ const ServicesPage: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
+        // This now calls the new API endpoint via api.ts
         const data = await fetchServices();
         setServices(data);
       } catch (err) {
@@ -173,10 +174,10 @@ const ServicesPage: React.FC = () => {
                 exit="exit"
                 className="w-full h-1/2 md:h-full relative order-1 md:order-2 md:pl-12 flex items-center justify-center"
               >
-                {currentService.image ? (
+                {currentService.image_url ? (
                   <img
-                    src={currentService.image}
-                    alt={currentService.title}
+                    src={currentService.image_url}
+                    alt={currentService.image__title}
                     className="w-full h-auto max-h-full object-contain rounded-2xl shadow-lg"
                   />
                 ) : (
