@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { fetchGalleryItems, GalleryItem } from "../services/api";
+import { fetchGalleryItems } from "../services/api";
 import LoadingSpinner from "../components/LoadingSpinner";
+
+export interface GalleryItem {
+  id: number;
+  title: string;
+  description: string;
+  image_url: string | null;
+  image__title: string;
+}
 
 // --- CSS for the Marquee Animation ---
 const marqueeStyles = `
@@ -76,17 +84,28 @@ const Lightbox: React.FC<LightboxProps> = ({ item, onClose }) => (
       onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on the content
     >
       <div className="overflow-hidden bg-gray-100">
-        <img
-          src={item.image}
-          alt={item.title}
-          className="w-full max-h-[70vh] object-contain" // Use object-contain to see the whole image
-        />
+        {/* Check if image exists */}
+        {item.image_url ? (
+          <img
+            src={item.image_url} // Use the image_url
+            alt={item.image__title} // Use the image__title
+            className="w-full max-h-[70vh] object-contain"
+          />
+        ) : (
+          <div className="w-full h-[50vh] flex items-center justify-center bg-gray-200 text-gray-500">
+            No Image
+          </div>
+        )}
       </div>
       <div className="p-6">
         <h2 className="text-2xl font-bold text-dark-charcoal mb-2">
           {item.title}
         </h2>
-        <p className="text-gray-700">{item.description}</p>
+        {/* Use dangerouslySetInnerHTML for Wagtail's RichText HTML */}
+        <div
+          className="text-gray-700"
+          dangerouslySetInnerHTML={{ __html: item.description }}
+        />
       </div>
     </div>
   </div>
@@ -106,49 +125,51 @@ const ScrollingGalleryRow: React.FC<ScrollingGalleryRowProps> = ({
     ? "animate-marquee-reverse"
     : "animate-marquee";
 
-  // Don't render the row if there are no items
   if (items.length === 0) {
     return null;
   }
 
+  // Debug: see exactly what the row receives
+  console.log(
+    "ROW items:",
+    items.map((i) => ({ id: i.id, url: i.image_url }))
+  );
+
+  const renderCard = (item: GalleryItem, key: React.Key) => {
+    const hasImage =
+      typeof item.image_url === "string" && item.image_url.trim().length > 0;
+
+    return (
+      <div
+        key={key}
+        className="flex-shrink-0 mx-3 cursor-pointer"
+        onClick={() => onItemClick(item)}
+      >
+        {hasImage ? (
+          <img
+            src={item.image_url!}
+            alt={item.image__title}
+            className="h-64 w-auto object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
+            onError={() =>
+              console.error("IMAGE FAILED TO LOAD:", item.id, item.image_url)
+            }
+          />
+        ) : (
+          <div className="h-64 w-64 flex items-center justify-center bg-gray-200 text-gray-500 rounded-lg shadow-md">
+            No Image
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="flex overflow-hidden my-4 group-hover">
-      <Helmet>
-        <title>Gallery | CM Artistry | Murals & Pottery</title>
-        <meta
-          name="description"
-          content="Explore the gallery of handcrafted murals and unique pottery by CM Artistry. See examples of bespoke artwork and ceramics."
-        />
-      </Helmet>
       <div className={animationClass}>
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="flex-shrink-0 mx-3 cursor-pointer"
-            onClick={() => onItemClick(item)}
-          >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="h-64 w-auto object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
-            />
-          </div>
-        ))}
+        {items.map((item) => renderCard(item, item.id))}
       </div>
       <div className={animationClass} aria-hidden="true">
-        {items.map((item) => (
-          <div
-            key={`${item.id}-clone`}
-            className="flex-shrink-0 mx-3 cursor-pointer"
-            onClick={() => onItemClick(item)}
-          >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="h-64 w-auto object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
-            />
-          </div>
-        ))}
+        {items.map((item) => renderCard(item, `${item.id}-clone`))}
       </div>
     </div>
   );
